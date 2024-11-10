@@ -1,0 +1,151 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "nav content aside"
+        "info info aside"
+        "footer footer footer";
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: auto 1fr auto auto;
+}
+
+p, h2, h3{
+    margin: 10px 25px 10px 10px;
+    text-align: right;
+}
+
+footer h2, .info h3 {
+    text-align: left;
+}
+
+aside {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+header, footer {
+    background-color: lightblue;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-items: right;
+    align-items: center;
+}
+
+header {
+    grid-area: header;
+}
+
+header h2 {
+    background-color: white;
+    text-align: right;
+}
+
+nav {
+    grid-area: nav;
+    display: grid;
+    align-items: center;
+    justify-content: right;
+    background-color: lightgoldenrodyellow;
+    grid-template-rows: 1fr;
+}
+
+nav ul {
+    margin-right: 25px;
+}
+
+#work {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    visibility: hidden;
+}
+
+#anim {
+    width: calc(100% - 10px);
+    height: calc(100% - 50px);
+    border: 5px solid orange;
+    position: absolute;
+    bottom: 0;
+}
+
+#anim img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#small-square {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#big-square {
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+#stop, #reload {
+    display: none;
+}
+
+aside {
+    grid-area: aside;
+    background-color: lightgoldenrodyellow;
+}
+
+.info {
+    grid-area: info;
+    background-color: lightgreen;
+    display: grid;
+    align-items: center;
+}
+
+footer {
+    grid-area: footer;
+}
+
+footer h2 {
+    background-color: #ffffff;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+@media (max-width: 600px) {
+    body {
+        grid-template-areas: 
+        "header"
+        "nav"
+        "content"
+        "info"
+        "aside"
+        "footer";
+        grid-template-columns: auto;
+        grid-template-rows: auto auto 1fr;
+    }
+
+    nav, aside {
+        justify-content: center;
+    }
+}
