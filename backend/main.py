@@ -9,8 +9,13 @@ class Log(BaseModel):
     message: str
     sequence_number: int
 
-class Logs(BaseModel):
-    logs: list[Log]
+class TimedLog(BaseModel):
+    message: str
+    sequence_number: int
+    datetime: str
+
+class TimedLogs(BaseModel):
+    logs: list[TimedLog]
 
 FILE_NAME = "log.txt"
 DELIMITER = "*"
@@ -39,12 +44,10 @@ def save_log(log: Log):
     return log
 
 @app.post("/save-logs")
-def save_logs(logs: Logs):
+def save_logs(logs: TimedLogs):
     with open(FILE_NAME, 'a+') as file:
         for log in logs.logs:
-            file.write(f"{log.sequence_number}{DELIMITER}{log.message}{DELIMITER}{d.now()}\n")
-
-    return logs
+            file.write(f"{log.sequence_number}{DELIMITER}{log.message}{DELIMITER}{log.datetime}\n")
 
 @app.get("/get-logs")
 def get_logs():
