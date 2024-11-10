@@ -1,9 +1,8 @@
 import os
-from datetime import datetime as d
+from datetime import datetime as d, timedelta as td
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import Response
 
 
 class Log(BaseModel):
@@ -35,7 +34,7 @@ def startup_event():
 @app.post("/save-log")
 def save_log(log: Log):
     with open(FILE_NAME, 'a+') as file:
-        file.write(f"{log.sequence_number}{DELIMITER}{log.message}{DELIMITER}{d.now()}\n")
+        file.write(f"{log.sequence_number}{DELIMITER}{log.message}{DELIMITER}{d.now() + td(hours=2)}\n")
 
     return log
 
