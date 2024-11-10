@@ -22,7 +22,7 @@ playButton.addEventListener("click", () => {
 
     localStorage.clear();
 
-    fetch("http://127.0.0.1:8000/clear-logs", {
+    fetch("http://54.162.130.2:8000/clear-logs", {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -39,7 +39,7 @@ closeButton.addEventListener("click", () => {
 
     log("close button");
 
-    fetch("http://127.0.0.1:8000/get-logs", {
+    fetch("http://54.162.130.2:8000/get-logs", {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -151,7 +151,7 @@ function log(messageText) {
     localStorageLog.push({sequence_number: logCount, message: messageText, datetime: new Date().toLocaleString()});
     localStorage.setItem("log", JSON.stringify(localStorageLog));
 
-    fetch("http://127.0.0.1:8000/save-log", {
+    fetch("http://54.162.130.2:8000/save-log", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
